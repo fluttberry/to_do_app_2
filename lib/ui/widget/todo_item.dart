@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
-class ToDoItemWidget
- extends StatefulWidget {
-  const ToDoItemWidget
-  ({super.key});
+class ToDoItemWidget extends StatefulWidget {
+  const ToDoItemWidget ({super.key});
 
   @override
-  State<ToDoItemWidget
-  > createState() => _ToDoItemWidget
-  State();
+  State<StatefulWidget> createState(){
+    return _ToDoItemWidget();
+  }
 }
 
-class _ToDoItemWidget
-State extends State<ToDoItemWidget
+class _ToDoItemWidget extends State<ToDoItemWidget
 > {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      
+    );
   }
 }

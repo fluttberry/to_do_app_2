@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:to_do_app_2/ui/widget/todo_item.dart';
 
 class ToDoHomePage extends StatefulWidget {
   const ToDoHomePage({super.key});
@@ -51,9 +52,11 @@ class _ToDoHomePageState extends State<ToDoHomePage> {
                 ),
               ],
             ),
-            TextField(
+            ListView.builder(itemBuilder: (context, index){
+              return ToDoItemWidget();
+            })
             
-            )
+            
           ],
         ),
       ),
