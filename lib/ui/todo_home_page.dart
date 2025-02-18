@@ -1,6 +1,5 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:to_do_app_2/ui/widget/todo_item.dart';
+import 'package:to_do_app_2/ui/widget/todo_item_widget.dart';
 
 class ToDoHomePage extends StatefulWidget {
   const ToDoHomePage({super.key});
@@ -52,11 +51,26 @@ class _ToDoHomePageState extends State<ToDoHomePage> {
                 ),
               ],
             ),
-            ListView.builder(itemBuilder: (context, index){
-              return ToDoItemWidget();
-            })
-            
-            
+            ListView.builder(
+              itemBuilder: (context, index) {
+                return ToDoItemWidget();
+              },
+            ),
+
+            InkWell(
+              onTap: () {
+                
+              },
+              child: Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Color(0xffFFE5BE),
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                child: Icon(Icons.add),
+              ),
+            ),
           ],
         ),
       ),
