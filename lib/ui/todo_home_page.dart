@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app_2/model/todo_model.dart';
 import 'package:to_do_app_2/ui/widget/todo_item_widget.dart';
 
 class ToDoHomePage extends StatefulWidget {
@@ -12,8 +13,10 @@ class _ToDoHomePageState extends State<ToDoHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade200,
       body: SafeArea(
         child: Column(
+          
           children: [
             Row(
               children: [
@@ -51,10 +54,15 @@ class _ToDoHomePageState extends State<ToDoHomePage> {
                 ),
               ],
             ),
-            ListView.builder(
-              itemBuilder: (context, index) {
-                return ToDoItemWidget();
-              },
+            Expanded(
+              child: ListView.builder(
+                itemCount: 4,
+                // shrinkWrap: true,
+                itemBuilder: (context, index) {
+              
+                  return ToDoItemWidget(ToDoModel(title: 'Test Note', description: 'Test note #1'));
+                },
+              ),
             ),
 
             InkWell(
