@@ -11,7 +11,14 @@ class ToDoHomePage extends StatefulWidget {
 }
 
 class _ToDoHomePageState extends State<ToDoHomePage> {
-  List<ToDoModel> todos = [];
+  List<ToDoModel> todos = [
+    ToDoModel(title: 'title1', description: 'description1',),
+    ToDoModel(title: 'title2', description: 'description2',),
+    ToDoModel(title: 'title3', description: 'description3',),
+    ToDoModel(title: 'title4', description: 'description4',),
+    ToDoModel(title: 'title5', description: 'description5',),
+
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -58,14 +65,14 @@ class _ToDoHomePageState extends State<ToDoHomePage> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: 4,
+                itemCount: todos.length,
+                scrollDirection: Axis.horizontal,
 
                 itemBuilder: (context, index) {
                   return ToDoItemWidget(
-                    ToDoModel(
-                      title: 'Title',
-                      description: 'To develope todo app v2.',
-                    ),
+                   toDoModel: todos[index],
+                   onDelete: (){},
+                   onEdit: (){},
                   );
                 },
               ),

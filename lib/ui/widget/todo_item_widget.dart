@@ -2,8 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app_2/model/todo_model.dart';
 
 class ToDoItemWidget extends StatefulWidget {
-  const ToDoItemWidget(this.toDoModel, {super.key});
-  final ToDoModel toDoModel;
+final ToDoModel toDoModel;
+  final Function () onDelete;
+  final Function () onEdit;
+
+  const ToDoItemWidget({super.key,
+   required this.toDoModel, 
+   required this.onDelete, 
+   required this.onEdit, });
+  
+
 
   @override
   State<StatefulWidget> createState() {
