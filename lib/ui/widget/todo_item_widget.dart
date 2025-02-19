@@ -48,11 +48,20 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                         style: TextStyle(color: Colors.black, fontSize: 20),
                       ),
                     ),
-                    Icon(Icons.share, size: 22, color: Colors.black),
-                    SizedBox(width: 10),
-                    Icon(Icons.edit, size: 22, color: Colors.black),
-                    SizedBox(width: 10),
-                    Icon(Icons.delete, size: 22, color: Colors.black),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.share, size: 20, color: Colors.black),
+                    ),
+
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.edit, size: 20, color: Colors.black),
+                    ),
+
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.delete, size: 20, color: Colors.black),
+                    ),
                   ],
                 ),
                 Text(
@@ -60,7 +69,6 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                   // 'widget.ToDoModel.desc',
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
-               
               ],
             ),
           ),
