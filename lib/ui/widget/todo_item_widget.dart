@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app_2/model/todo_model.dart';
+import 'package:to_do_app_2/ui/widget/edit_note_sheet.dart';
 
 class ToDoItemWidget extends StatefulWidget {
 final ToDoModel toDoModel;
   final Function () onDelete;
   final Function () onEdit;
+  
 
   const ToDoItemWidget({super.key,
    required this.toDoModel, 
@@ -58,17 +60,22 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                     ),
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.share, size: 20, color: Colors.black),
+                      icon: Icon(Icons.ios_share, size: 20, color: Colors.black),
                     ),
 
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => EditNoteSheet()),
+          );
+                      },
                       icon: Icon(Icons.edit, size: 20, color: Colors.black),
                     ),
 
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.delete, size: 20, color: Colors.black),
+                      icon: Icon(Icons.delete_outlined, size: 20, color: Colors.black),
                     ),
                   ],
                 ),

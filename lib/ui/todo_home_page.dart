@@ -12,13 +12,14 @@ class ToDoHomePage extends StatefulWidget {
 
 class _ToDoHomePageState extends State<ToDoHomePage> {
   List<ToDoModel> todos = [
-    ToDoModel(title: 'title1', description: 'description1',),
-    ToDoModel(title: 'title2', description: 'description2',),
-    ToDoModel(title: 'title3', description: 'description3',),
-    ToDoModel(title: 'title4', description: 'description4',),
-    ToDoModel(title: 'title5', description: 'description5',),
-
+    ToDoModel(title: 'title1', description: 'description1'),
+    ToDoModel(title: 'title2', description: 'description2'),
+    ToDoModel(title: 'title3', description: 'description3'),
+    ToDoModel(title: 'title4', description: 'description4'),
+    ToDoModel(title: 'title5', description: 'description5'),
   ];
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -66,13 +67,13 @@ class _ToDoHomePageState extends State<ToDoHomePage> {
             Expanded(
               child: ListView.builder(
                 itemCount: todos.length,
-                scrollDirection: Axis.horizontal,
+                // scrollDirection: Axis.horizontal,
 
                 itemBuilder: (context, index) {
                   return ToDoItemWidget(
-                   toDoModel: todos[index],
-                   onDelete: (){},
-                   onEdit: (){},
+                    toDoModel: todos[index],
+                    onDelete: () {},
+                    onEdit: () {},
                   );
                 },
               ),
@@ -82,7 +83,10 @@ class _ToDoHomePageState extends State<ToDoHomePage> {
       ),
       floatingActionButton: InkWell(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> AddNewNoteSheet()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddNewNoteSheet()),
+          );
         },
         child: Padding(
           padding: const EdgeInsets.all(10),

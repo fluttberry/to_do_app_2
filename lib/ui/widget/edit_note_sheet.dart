@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
-class AddNewNoteSheet extends StatefulWidget {
-  const AddNewNoteSheet({super.key});
+class EditNoteSheet extends StatefulWidget {
+  const EditNoteSheet({super.key});
 
   @override
-  State<AddNewNoteSheet> createState() => _AddNewNoteSheetState();
+  State<EditNoteSheet> createState() => _EditNoteSheetState();
 }
-String? dateText;
 
-
-class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
+class _EditNoteSheetState extends State<EditNoteSheet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +42,7 @@ class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
                     child: TextField(
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Title',
+                        
                       ),
                     ),
                   ),
@@ -63,7 +61,7 @@ class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
                     child: TextField(
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Decrption',
+                        
                       ),
                     ),
                   ),
@@ -71,17 +69,7 @@ class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
                 SizedBox(height: 10),
                 InkWell(
                   onTap: () async {
-                    var date = await showDatePicker(
-                      context: context,
-                      firstDate: DateTime(2020),
-                      lastDate: DateTime(2030),
-                    );
-                    if (date! = null) {
-                      setState(() {
-                        dateText = '$date';
-                      });
-                    }
-                    
+                   
                   },
                   child: Container(
                     height: 44,
@@ -93,7 +81,7 @@ class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(10),
-                      child: Text('Date', textAlign: TextAlign.center),
+                      child: Text('20.02.2025', textAlign: TextAlign.center),
                     ),
                   ),
                 ),
@@ -110,7 +98,7 @@ class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(10),
-                      child: Text('Add', textAlign: TextAlign.center),
+                      child: Text('Edit', textAlign: TextAlign.center),
                     ),
                   ),
                 ),
