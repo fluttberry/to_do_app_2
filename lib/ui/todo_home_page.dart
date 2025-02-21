@@ -82,11 +82,17 @@ class _ToDoHomePageState extends State<ToDoHomePage> {
         ),
       ),
       floatingActionButton: InkWell(
-        onTap: () {
+        onTap: () async {
+          ToDoModel? result = await
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => AddNewNoteSheet()),
           );
+          if (result != null) {
+            setState(() {
+              todos.add(result);
+            });
+          }
         },
         child: Padding(
           padding: const EdgeInsets.all(10),

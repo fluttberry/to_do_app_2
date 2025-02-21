@@ -3,17 +3,16 @@ import 'package:to_do_app_2/model/todo_model.dart';
 import 'package:to_do_app_2/ui/widget/edit_note_sheet.dart';
 
 class ToDoItemWidget extends StatefulWidget {
-final ToDoModel toDoModel;
-  final Function () onDelete;
-  final Function () onEdit;
-  
+  final ToDoModel toDoModel;
+  final Function() onDelete;
+  final Function() onEdit;
 
-  const ToDoItemWidget({super.key,
-   required this.toDoModel, 
-   required this.onDelete, 
-   required this.onEdit, });
-  
-
+  const ToDoItemWidget({
+    super.key,
+    required this.toDoModel,
+    required this.onDelete,
+    required this.onEdit,
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -60,22 +59,32 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                     ),
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.ios_share, size: 20, color: Colors.black),
+                      icon: Icon(
+                        Icons.ios_share,
+                        size: 20,
+                        color: Colors.black,
+                      ),
                     ),
 
                     IconButton(
                       onPressed: () {
                         Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => EditNoteSheet()),
-          );
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EditNoteSheet(),
+                          ),
+                        );
                       },
                       icon: Icon(Icons.edit, size: 20, color: Colors.black),
                     ),
 
                     IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.delete_outlined, size: 20, color: Colors.black),
+                      onPressed: deleteDialog,
+                      icon: Icon(
+                        Icons.delete_outlined,
+                        size: 20,
+                        color: Colors.black,
+                      ),
                     ),
                   ],
                 ),
@@ -84,6 +93,8 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                   // 'widget.ToDoModel.desc',
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
+                SizedBox(height: 20),
+                Row(children: [Text('21.02.2025')]),
               ],
             ),
           ),
@@ -92,3 +103,39 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
     );
   }
 }
+
+deleteDialog() {
+   
+    showDialog(
+        context: context,
+        builder: (context) {
+          return Dialog(
+            child: Container(
+              height: 200,
+              width: 400,
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    Text(
+                      'Attention',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 30),
+                    Text(
+                      'Do you want to delete this note?',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+  }
