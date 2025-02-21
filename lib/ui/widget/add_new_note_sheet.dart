@@ -76,7 +76,7 @@ class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
                       firstDate: DateTime(2020),
                       lastDate: DateTime(2030),
                     );
-                    if (date! = null) {
+                    if (date!= null) {
                       setState(() {
                         dateText = '$date';
                       });
