@@ -79,7 +79,7 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                     ),
 
                     IconButton(
-                      onPressed: deleteDialog,
+                      onPressed: () {},
                       icon: Icon(
                         Icons.delete_outlined,
                         size: 20,
@@ -94,7 +94,14 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
                 SizedBox(height: 20),
-                Row(children: [Text('21.02.2025')]),
+                Row(
+                  children: [
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Text(widget.toDoModel.date ?? 'Date'),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -104,38 +111,38 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
   }
 }
 
-deleteDialog() {
-   
-    showDialog(
-        context: context,
-        builder: (context) {
-          return Dialog(
-            child: Container(
-              height: 200,
-              width: 400,
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    Text(
-                      'Attention',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 30),
-                    Text(
-                      'Do you want to delete this note?',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    SizedBox(height: 20),
-                    Row(
-                      children: [
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        });
-  }
+// deleteDialog() {
+
+//     showDialog(
+//         context: context,
+//         builder: (context) {
+//           return Dialog(
+//             child: Container(
+//               height: 200,
+//               width: 400,
+//               child: Padding(
+//                 padding: const EdgeInsets.all(20),
+//                 child: Column(
+//                   children: [
+//                     Text(
+//                       'Attention',
+//                       style:
+//                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+//                     ),
+//                     SizedBox(height: 30),
+//                     Text(
+//                       'Do you want to delete this note?',
+//                       style: TextStyle(fontSize: 18),
+//                     ),
+//                     SizedBox(height: 20),
+//                     Row(
+//                       children: [
+//                       ],
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//           );
+//         });
+//   }

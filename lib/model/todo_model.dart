@@ -1,12 +1,12 @@
 class ToDoModel {
   String title;
   String description;
-  bool done; 
+  String? date; 
   
 
   ToDoModel({
     required this.title,
     required this.description,
-    this.done = false,
+    this.date,
   });
 }
