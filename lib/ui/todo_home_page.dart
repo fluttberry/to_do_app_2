@@ -12,14 +12,12 @@ class ToDoHomePage extends StatefulWidget {
 
 class _ToDoHomePageState extends State<ToDoHomePage> {
   List<ToDoModel> todos = [
-  //   ToDoModel(title: 'title1', description: 'description1'),
-  //   ToDoModel(title: 'title2', description: 'description2'),
-  //   ToDoModel(title: 'title3', description: 'description3'),
-  //   ToDoModel(title: 'title4', description: 'description4'),
-  //   ToDoModel(title: 'title5', description: 'description5'),
+    //   ToDoModel(title: 'title1', description: 'description1'),
+    //   ToDoModel(title: 'title2', description: 'description2'),
+    //   ToDoModel(title: 'title3', description: 'description3'),
+    //   ToDoModel(title: 'title4', description: 'description4'),
+    //   ToDoModel(title: 'title5', description: 'description5'),
   ];
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -67,8 +65,8 @@ class _ToDoHomePageState extends State<ToDoHomePage> {
             Expanded(
               child: ListView.builder(
                 itemCount: todos.length,
-                // scrollDirection: Axis.horizontal,
 
+                // scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return ToDoItemWidget(
                     toDoModel: todos[index],
@@ -82,9 +80,9 @@ class _ToDoHomePageState extends State<ToDoHomePage> {
         ),
       ),
       floatingActionButton: InkWell(
+        overlayColor: WidgetStatePropertyAll(Colors.transparent),
         onTap: () async {
-          ToDoModel? result = await
-          Navigator.push(
+          ToDoModel? result = await Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => AddNewNoteSheet()),
           );

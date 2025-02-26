@@ -22,6 +22,11 @@ class ToDoItemWidget extends StatefulWidget {
 
 class _ToDoItemWidget extends State<ToDoItemWidget> {
   @override
+  void initState() {
+  
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(10),
@@ -79,7 +84,12 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                     ),
 
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog(context: context, builder: (context){
+                          return Container(child: ElevatedButton(onPressed: widget.onDelete, child: child),)
+
+                        });
+                      },
                       icon: Icon(
                         Icons.delete_outlined,
                         size: 20,
@@ -99,6 +109,11 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                     Align(
                       alignment: Alignment.bottomRight,
                       child: Text(widget.toDoModel.date ?? 'Date'),
+                    ),
+                    Text(
+                      widget.toDoModel.date,
+                      // 'widget.ToDoModel.desc',
+                      style: TextStyle(color: Colors.black, fontSize: 20),
                     ),
                   ],
                 ),

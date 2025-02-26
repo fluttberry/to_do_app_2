@@ -8,15 +8,11 @@ class AddNewNoteSheet extends StatefulWidget {
   State<AddNewNoteSheet> createState() => _AddNewNoteSheetState();
 }
 
-
-class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
-TextEditingController titleController = TextEditingController();
-TextEditingController descController = TextEditingController();
-
-
-
 String? dateText;
 
+class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +24,6 @@ String? dateText;
           child: Center(
             child: Column(
               children: [
-              
                 Container(
                   height: 311,
                   width: 311,
@@ -87,12 +82,11 @@ String? dateText;
                       firstDate: DateTime(2020),
                       lastDate: DateTime(2030),
                     );
-                    if (date!= null) {
+                    if (date != null) {
                       setState(() {
                         dateText = '$date';
                       });
                     }
-                    
                   },
                   child: Container(
                     height: 44,
@@ -104,39 +98,48 @@ String? dateText;
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(10),
-                      child: Text('Date', textAlign: TextAlign.center),
+                      child: Text(
+                        dateText != null ? dateText! : 'Date',
+                        //dateText ?? 'Date',
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(height: 10),
                 InkWell(
                   onTap: () {
-                    
-
-                    // var toDoModel= ToDoModel(title: titleController.text, description: descController.text);
-                    // Navigator.pop(context, toDoModel);
-
-                    (TextEditingController().text.isNotEmpty)&&
-                    (TextEditingController().text.isNotEmpty)&&
-                    (dateText !=null)
-                    ToDoModel(title: 'title', description: 'description', date: dateText,);
-                    Navigator.pop(context, 'hello');
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Please fill all fields')));
-                    SnackBar(context, 'Please fill all fields');
+                    if (titleController.text.isNotEmpty &&
+                        descController.text.isNotEmpty &&
+                        dateText != null) {
+                      ToDoModel(
+                        title: titleController.text,
+                        description: descController.text,
+                        date: dateText!,
+                      );
+                      Navigator.pop(context, 'hello');
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Please fill all fields')),
+                      );
+                      SnackBar(context, 'Please fill all fields');
+                    }
+                    ;
+                    child:
+                    Container(
+                      height: 44,
+                      width: 311,
+                      decoration: BoxDecoration(
+                        color: Color(0xffFFE5BE),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.grey),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Text('Add', textAlign: TextAlign.center),
+                      ),
+                    );
                   },
-                  child: Container(
-                    height: 44,
-                    width: 311,
-                    decoration: BoxDecoration(
-                      color: Color(0xffFFE5BE),
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.grey),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text('Add', textAlign: TextAlign.center),
-                    ),
-                  ),
                 ),
               ],
             ),
