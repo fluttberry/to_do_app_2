@@ -111,8 +111,18 @@ String? dateText;
                 SizedBox(height: 10),
                 InkWell(
                   onTap: () {
-                    var toDoModel= ToDoModel(title: titleController.text, description: descController.text);
-                    Navigator.pop(context, toDoModel);
+                    
+
+                    // var toDoModel= ToDoModel(title: titleController.text, description: descController.text);
+                    // Navigator.pop(context, toDoModel);
+
+                    (TextEditingController().text.isNotEmpty)&&
+                    (TextEditingController().text.isNotEmpty)&&
+                    (dateText !=null)
+                    ToDoModel(title: 'title', description: 'description', date: dateText,);
+                    Navigator.pop(context, 'hello');
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Please fill all fields')));
+                    SnackBar(context, 'Please fill all fields');
                   },
                   child: Container(
                     height: 44,
