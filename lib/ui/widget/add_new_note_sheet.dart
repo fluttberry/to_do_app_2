@@ -154,7 +154,7 @@ class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
                       );
                       Navigator.pop(context, todo);
                     } else {
-                      Snackbar(context, 'заполните все поля');
+                      Snackbar(context, 'please fill all fields');
                     }
                   },
                   child: Container(

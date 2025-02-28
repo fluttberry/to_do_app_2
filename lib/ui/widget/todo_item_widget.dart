@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app_2/model/todo_model.dart';
-import 'package:to_do_app_2/ui/widget/edit_note_sheet.dart';
+
 
 class ToDoItemWidget extends StatefulWidget {
   final ToDoModel toDoModel;
@@ -21,6 +21,8 @@ class ToDoItemWidget extends StatefulWidget {
 }
 
 class _ToDoItemWidget extends State<ToDoItemWidget> {
+  int counter = 0;
+
   @override
   void initState() {
     super.initState();
@@ -28,6 +30,7 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
 
   @override
   Widget build(BuildContext context) {
+    counter = 10;
     return Container(
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(20),
@@ -63,7 +66,9 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // Share.share(widget.toDoModel.title);
+                      },
                       icon: Icon(
                         Icons.ios_share,
                         size: 20,
@@ -72,14 +77,7 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                     ),
 
                     IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => EditNoteSheet(),
-                          ),
-                        );
-                      },
+                      onPressed: widget.onEdit,
                       icon: Icon(Icons.edit, size: 20, color: Colors.black),
                     ),
 
@@ -90,8 +88,11 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                           builder: (context) {
                             return Container(
                               child: ElevatedButton(
-                                onPressed: widget.onDelete,
-                                child: Text('Dalete'),
+                                onPressed: () {
+                                  widget.onDelete();
+                                  Navigator.pop(context);
+                                },
+                                child: Text('delete'),
                               ),
                             );
                           },
@@ -110,19 +111,10 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                   // 'widget.ToDoModel.desc',
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
-                SizedBox(height: 20),
-                Row(
-                  children: [
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Text(widget.toDoModel.date ?? 'Date'),
-                    ),
-                    Text(
-                      widget.toDoModel.date,
-                      // 'widget.ToDoModel.desc',
-                      style: TextStyle(color: Colors.black, fontSize: 20),
-                    ),
-                  ],
+                Text(
+                  widget.toDoModel.date,
+                  // 'widget.ToDoModel.desc',
+                  style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
               ],
             ),
@@ -132,39 +124,3 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
     );
   }
 }
-
-// deleteDialog() {
-
-//     showDialog(
-//         context: context,
-//         builder: (context) {
-//           return Dialog(
-//             child: Container(
-//               height: 200,
-//               width: 400,
-//               child: Padding(
-//                 padding: const EdgeInsets.all(20),
-//                 child: Column(
-//                   children: [
-//                     Text(
-//                       'Attention',
-//                       style:
-//                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//                     ),
-//                     SizedBox(height: 30),
-//                     Text(
-//                       'Do you want to delete this note?',
-//                       style: TextStyle(fontSize: 18),
-//                     ),
-//                     SizedBox(height: 20),
-//                     Row(
-//                       children: [
-//                       ],
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             ),
-//           );
-//         });
-//   }
