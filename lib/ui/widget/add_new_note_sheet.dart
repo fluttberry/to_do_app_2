@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:to_do_app_2/model/todo_model.dart';
-// import 'package:to_do_app_2/ui/todo_home_page.dart';
+import 'package:to_do_app_2/ui/widget/snackbar.dart';
 
 class AddNewNoteSheet extends StatefulWidget {
-  const AddNewNoteSheet({super.key});
+  const AddNewNoteSheet({super.key, this.toDoModel});
+  final ToDoModel? toDoModel;
+
   @override
   State<AddNewNoteSheet> createState() => _AddNewNoteSheetState();
 }
 
-String? dateText;
-
 class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
-  TextEditingController titleController = TextEditingController();
-  TextEditingController descController = TextEditingController();
+  String? dateText;
+  TextEditingController titleCtrl = TextEditingController();
+  TextEditingController descCtrl = TextEditingController();
+  XFile? image;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.toDoModel != null) {
+      titleCtrl.text = widget.toDoModel!.title;
+      descCtrl.text = widget.toDoModel!.description;
+      dateText = widget.toDoModel!.date;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +38,34 @@ class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
           child: Center(
             child: Column(
               children: [
-                Container(
-                  height: 311,
-                  width: 311,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.grey),
+                InkWell(
+                  onTap: () async {
+                    XFile? img = await ImagePicker().pickImage(
+                      source: ImageSource.gallery,
+                    );
+                    // if (img != null) {
+                    setState(() {
+                      image = img;
+                    });
+                    // }
+                  },
+                  child: Container(
+                    height: 311,
+                    width: 311,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child:
+                        image == null
+                            ? Icon(Icons.image, size: 100)
+                            // : Image.file(File(image!.path)),
+                            : ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(image!.path),
+                            ),
                   ),
-                  child: Icon(Icons.image, size: 100),
                 ),
                 SizedBox(height: 10),
                 Container(
@@ -46,7 +79,7 @@ class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: TextField(
-                      controller: titleController,
+                      controller: titleCtrl,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Title',
@@ -66,7 +99,7 @@ class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: TextField(
-                      controller: descController,
+                      controller: descCtrl,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Decrption',
@@ -84,7 +117,8 @@ class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
                     );
                     if (date != null) {
                       setState(() {
-                        dateText = '$date';
+                        var format = DateFormat('dd/MMMM/yyyy HH-mm');
+                        dateText = format.format(date);
                       });
                     }
                   },
@@ -100,7 +134,7 @@ class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
                       padding: const EdgeInsets.all(10),
                       child: Text(
                         dateText != null ? dateText! : 'Date',
-                        //dateText ?? 'Date',
+                        // dateText ?? 'Date',
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -109,37 +143,33 @@ class _AddNewNoteSheetState extends State<AddNewNoteSheet> {
                 SizedBox(height: 10),
                 InkWell(
                   onTap: () {
-                    if (titleController.text.isNotEmpty &&
-                        descController.text.isNotEmpty &&
+                    if (titleCtrl.text.isNotEmpty &&
+                        descCtrl.text.isNotEmpty &&
                         dateText != null) {
-                      ToDoModel(
-                        title: titleController.text,
-                        description: descController.text,
+                      var todo = ToDoModel(
+                        title: titleCtrl.text,
+                        description: descCtrl.text,
                         date: dateText!,
+                        image: image?.path ?? '',
                       );
-                      Navigator.pop(context, 'hello');
+                      Navigator.pop(context, todo);
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Please fill all fields')),
-                      );
-                      SnackBar(context, 'Please fill all fields');
+                      Snackbar(context, 'заполните все поля');
                     }
-                    ;
-                    child:
-                    Container(
-                      height: 44,
-                      width: 311,
-                      decoration: BoxDecoration(
-                        color: Color(0xffFFE5BE),
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.grey),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Text('Add', textAlign: TextAlign.center),
-                      ),
-                    );
                   },
+                  child: Container(
+                    height: 44,
+                    width: 311,
+                    decoration: BoxDecoration(
+                      color: Color(0xffFFE5BE),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Text('Add', textAlign: TextAlign.center),
+                    ),
+                  ),
                 ),
               ],
             ),

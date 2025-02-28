@@ -23,9 +23,9 @@ class ToDoItemWidget extends StatefulWidget {
 class _ToDoItemWidget extends State<ToDoItemWidget> {
   @override
   void initState() {
-  
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -85,10 +85,17 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
 
                     IconButton(
                       onPressed: () {
-                        showDialog(context: context, builder: (context){
-                          return Container(child: ElevatedButton(onPressed: widget.onDelete, child: child),)
-
-                        });
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return Container(
+                              child: ElevatedButton(
+                                onPressed: widget.onDelete,
+                                child: Text('Dalete'),
+                              ),
+                            );
+                          },
+                        );
                       },
                       icon: Icon(
                         Icons.delete_outlined,
