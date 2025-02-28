@@ -70,7 +70,11 @@ class _ToDoHomePageState extends State<ToDoHomePage> {
                 itemBuilder: (context, index) {
                   return ToDoItemWidget(
                     toDoModel: todos[index],
-                    onDelete: () {},
+                    onDelete: () {
+                      setState(() {
+                        todos.removeAt(index);
+                      });
+                    },
                     onEdit: () {},
                   );
                 },

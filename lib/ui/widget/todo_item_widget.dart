@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app_2/model/todo_model.dart';
 
-
 class ToDoItemWidget extends StatefulWidget {
   final ToDoModel toDoModel;
   final Function() onDelete;
@@ -86,13 +85,54 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                         showDialog(
                           context: context,
                           builder: (context) {
-                            return Container(
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  widget.onDelete();
-                                  Navigator.pop(context);
-                                },
-                                child: Text('delete'),
+                            return Dialog(
+                              child: Container(
+                                color: Colors.white,
+
+                                height: 200,
+                                width: double.infinity,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Text(
+                                        'Warning',
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Text(
+                                        'Are you sure you want to delete this note?',
+                                        style: TextStyle(fontSize: 15),
+                                      ),
+                                    ),
+                                    SizedBox(height: 60,),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 180,),
+                                      child: Row(
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              widget.onDelete();
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text('Delete', style: TextStyle(fontSize: 18,),),
+                                          ),
+                                          SizedBox(width: 20,),
+                                          InkWell(
+                                            onTap: () {
+                                              
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text('Cancel', style: TextStyle(fontSize: 18,),),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           },
@@ -111,10 +151,14 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                   // 'widget.ToDoModel.desc',
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
-                Text(
-                  widget.toDoModel.date,
-                  // 'widget.ToDoModel.desc',
-                  style: TextStyle(color: Colors.black, fontSize: 20),
+                SizedBox(height: 15),
+                Padding(
+                  padding: const EdgeInsets.only(left: 50),
+                  child: Text(
+                    widget.toDoModel.date,
+                    // 'widget.ToDoModel.desc',
+                    style: TextStyle(color: Colors.black, fontSize: 15),
+                  ),
                 ),
               ],
             ),
