@@ -108,9 +108,9 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     ),
-                                    SizedBox(height: 60,),
+                                    SizedBox(height: 60),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 180,),
+                                      padding: const EdgeInsets.only(left: 180),
                                       child: Row(
                                         children: [
                                           InkWell(
@@ -118,15 +118,26 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                                               widget.onDelete();
                                               Navigator.pop(context);
                                             },
-                                            child: Text('Delete', style: TextStyle(fontSize: 18,),),
+                                            child: Text(
+                                              'Delete',
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                color: Color(0xff79613D),
+                                              ),
+                                            ),
                                           ),
-                                          SizedBox(width: 20,),
+                                          SizedBox(width: 20),
                                           InkWell(
                                             onTap: () {
-                                              
                                               Navigator.pop(context);
                                             },
-                                            child: Text('Cancel', style: TextStyle(fontSize: 18,),),
+                                            child: Text(
+                                              'Cancel',
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                color: Color(0xffA28252),
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
