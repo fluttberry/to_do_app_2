@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app_2/model/todo_model.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ToDoItemWidget extends StatefulWidget {
   final ToDoModel toDoModel;
@@ -66,7 +67,7 @@ class _ToDoItemWidget extends State<ToDoItemWidget> {
                     ),
                     IconButton(
                       onPressed: () {
-                        // Share.share(widget.toDoModel.title);
+                        Share.share(widget.toDoModel.title);
                       },
                       icon: Icon(
                         Icons.ios_share,
