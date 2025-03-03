@@ -75,7 +75,21 @@ class _ToDoHomePageState extends State<ToDoHomePage> {
                         todos.removeAt(index);
                       });
                     },
-                    onEdit: () {},
+                    onEdit: () async {
+                      var result = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) =>
+                                  AddNewNoteSheet(toDoModel: todos[index]),
+                        ),
+                      );
+                      if (result != null) {
+                        setState(() {
+                          todos[index] = result;
+                        });
+                      }
+                    },
                   );
                 },
               ),
